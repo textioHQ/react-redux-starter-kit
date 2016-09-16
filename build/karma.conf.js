@@ -16,12 +16,12 @@ const karmaConfig = {
         },
     ],
     singleRun: !argv.watch,
-    frameworks: [`mocha`],
+    frameworks: [`jasmine`],
     reporters: [`mocha`],
     preprocessors: {
         [`${config.dir_test}/test-bundler.js`]: [`webpack`],
     },
-    browsers: [`PhantomJS`, `Chrome`, `Firefox`, `Safari`],
+    browsers: [`PhantomJS`], // `Chrome`, `Firefox`, `Safari
     webpack: {
         devtool: `cheap-module-source-map`,
         resolve: Object.assign({}, webpackConfig.resolve, {
