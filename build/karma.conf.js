@@ -21,7 +21,7 @@ const karmaConfig = {
     preprocessors: {
         [`${config.dir_test}/test-bundler.js`]: [`webpack`],
     },
-    browsers: [`PhantomJS`],
+    browsers: [`PhantomJS`, `Chrome`, `Firefox`, `Safari`],
     webpack: {
         devtool: `cheap-module-source-map`,
         resolve: Object.assign({}, webpackConfig.resolve, {
