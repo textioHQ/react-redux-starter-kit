@@ -1,3 +1,6 @@
+/* eslint no-bitwise:0, piggyback/no-restricted-global-extend:0 */
+/* globals __COVERAGE__ */
+
 // ---------------------------------------
 // Test Environment Setup
 // ---------------------------------------

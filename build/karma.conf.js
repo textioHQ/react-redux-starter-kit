@@ -1,3 +1,4 @@
+/* eslint no-underscore-dangle: ["error", { "allow": ["__COVERAGE__"] }] */
 const argv = require(`yargs`).argv;
 const config = require(`../config`);
 const webpackConfig = require(`./webpack.config`);

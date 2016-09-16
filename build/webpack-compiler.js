@@ -22,13 +22,20 @@ function webpackCompiler(webpackConfig, statsFormat) {
                 debug(`Webpack compiler encountered errors.`);
                 debug(jsonStats.errors.join(`\n`));
                 return reject(new Error(`Webpack compiler encountered errors`));
-            } else if (jsonStats.warnings.length > 0) {
+            }
+            else if (jsonStats.warnings.length > 0) {
                 debug(`Webpack compiler encountered warnings.`);
                 debug(jsonStats.warnings.join(`\n`));
-            } else {
+            }
+            else {
+
                 debug(`No errors or warnings encountered.`);
+
             }
             resolve(jsonStats);
+
+
+            return undefined;
         });
     });
 }

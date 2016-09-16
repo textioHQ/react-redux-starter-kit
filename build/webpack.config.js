@@ -1,3 +1,4 @@
+/* eslint no-underscore-dangle: ["error", { "allow": ["__DEV__", "__PROD__", "__TEST__"] }] */
 const webpack = require(`webpack`);
 const cssnano = require(`cssnano`);
 const HtmlWebpackPlugin = require(`html-webpack-plugin`);
@@ -65,7 +66,8 @@ if (__DEV__) {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin()
   );
-} else if (__PROD__) {
+}
+else if (__PROD__) {
     debug(`Enable plugins for production (OccurenceOrder, Dedupe & UglifyJS).`);
     webpackConfig.plugins.push(
     new webpack.optimize.OccurrenceOrderPlugin(),

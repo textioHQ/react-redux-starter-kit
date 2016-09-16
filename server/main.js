@@ -1,3 +1,4 @@
+/* eslint unexpected-require:0 global-require:0 */
 const express = require(`express`);
 const debug = require(`debug`)(`app:server`);
 const webpack = require(`webpack`);
@@ -35,7 +36,8 @@ if (config.env === `development`) {
   // of development since this directory will be copied into ~/dist
   // when the application is compiled.
     app.use(express.static(paths.client(`static`)));
-} else {
+}
+else {
     debug(
     `Server is being run outside of live development mode, meaning it will ` +
     `only serve the compiled application bundle in ~/dist. Generally you ` +

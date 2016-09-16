@@ -1,6 +1,10 @@
+/* eslint global-require:0 */
+/* eslint piggyback/no-restricted-global-extend:0 */
+/* eslint valid-typeof:0 */
+/* globals __DEV__ */
 import { applyMiddleware, compose, createStore } from 'redux';
 import thunk from 'redux-thunk';
-import makeRootReducer from './reducers';
+import makeReducer from './reducers';
 
 export default (initialState = {}) => {
   // ======================================================
@@ -23,7 +27,7 @@ export default (initialState = {}) => {
   // Store Instantiation and HMR Setup
   // ======================================================
     const store = createStore(
-    makeRootReducer(),
+    makeReducer(),
     initialState,
     compose(
       applyMiddleware(...middleware),

@@ -1,3 +1,7 @@
+/* eslint piggyback/no-restricted-global-extend:0 */
+/* eslint no-underscore-dangle: ["error", { "allow": ["___INITIAL_STATE__", "__DEV__"] }] */
+/* eslint global-require:0 */
+/* global __DEV__ */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { browserHistory } from 'react-router';
@@ -52,7 +56,8 @@ if (__DEV__) {
         render = () => {
             try {
                 renderApp();
-            } catch (error) {
+            }
+            catch (error) {
                 renderError(error);
             }
         };
