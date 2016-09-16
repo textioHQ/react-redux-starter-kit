@@ -1,4 +1,4 @@
-.PHONY: build init run buildProd buildProdLive test coverage publish iter_docs
+.PHONY: init clean compile lint lint_fix start dev deploy deploy_dev deploy_prod test test_dev
 
 underline=`tput smul`
 nounderline=`tput rmul`
@@ -10,14 +10,20 @@ help:
 	@echo ${underline}General commands:${nounderline}
 	@echo ${bold}make init${normal}"  "Download the required modules and dependencies for building
 	@echo ${bold}make clean${normal}"  "Clean up intermediate folders and files
-	@echo ${bold}make publish${normal}"  "Upload the tarball to S3 and push a git tag"
 	@echo
 	@echo ${underline}Build commands:${nounderline}
-	@echo ${bold}make build${normal}"  "Build the dev frontend, run quick tests, and generate coverage
+	@echo ${bold}make compile${normal}"  "Compile the application into dist/ directory
+	@echo ${bold}make lint${normal}"  "Run linting on all relevant files
+	@echo ${bold}make lint_fix${normal}"  "Run linting on all relevant files and try to automatically fix errors
+	@echo ${bold}make start${normal}"  "Serves the app at localhost:3000. HMR will be enabled in development
+	@echo ${bold}make dev${normal}"  "Same as npm start, but enables nodemon for the server as well
+	@echo ${bold}make deploy${normal}"  "Runs linter, tests, and then, on success, compiles the application
+	@echo ${bold}make deploy_dev${normal}"  "Same as deploy but overrides NODE_ENV to "development"
+	@echo ${bold}make deploy_prod${normal}"  "Same as deploy but overrides NODE_ENV to "production"
 	@echo
 	@echo ${underline}Test commands:${nounderline}
-	@echo ${bold}make test${normal}"  "Run local tests on PhantomJS, Chrome, Safari, and Firefox
-	@echo ${bold}make test:dev${normal}"  "Run local tests and re-run on file change
+	@echo ${bold}make test${normal}"  "Runs unit tests with Karma and generates a coverage report
+	@echo ${bold}make test_dev${normal}"  "Run local tests and re-run on file change
 	@echo
 
 init:
@@ -30,40 +36,38 @@ init_circle:
 clean:
 	@npm run -s clean
 
-build:
-	@npm run -s clean
-	@npm run -s esLintAllowWarnings
-	@npm run -s build
-	@npm run -s makeDist
-	@npm run -s coverage
-	@npm run -s docs
+compile:
+	@npm run -s compile
 
-build_prod:
-	@npm run -s clean
-	@npm run -s esLint
-	@npm run -s build
-	@npm run -s docs
+lint:
+	@npm run -s lint
 
-autolint:
-	@npm run -s autolint
+lint_fix:
+	@npm run -s lint:fix
+
+start:
+	@npm run -s start
+
+dev:
+	@npm run -s dev
 
 test:
 	@npm run -s test
 
 test_circle:
-	@npm run -s coverage
+	@npm run -s test
 
-test_debug:
-	@./node_modules/.bin/karma start karma/phantom-debug.conf.js
+test_dev:
+	@npm run -s test:dev
 
-iter_docs:
-	rm -rf docs/ && npm run -s docs
+deploy:
+	@npm run -s deploy
 
-serve:
-	@npm run -s serve
+deploy_dev:
+	@npm run -s deploy:dev
 
-publish:
-	@npm run -s publish
+deploy_prod:
+	@npm run -s deploy:prod
 
-update_template:
-	git fetch template && git merge template/master
+codecov:
+	@npm run -s codecov
