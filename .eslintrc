@@ -1,27 +1,101 @@
 {
-  "parser": "babel-eslint",
+  "env": {
+    "browser": true,
+  },
   "extends": [
-    "standard",
-    "standard-react"
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "textio-base"
   ],
   "plugins": [
-    "babel",
     "react",
-    "promise"
+    "piggyback",
+    "banhammer"
   ],
-  "env": {
-    "browser" : true
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "settings": {
+    "react": {
+      "pragma": "React",
+      "version": "15.0"
+    }
   },
   "globals": {
-    "__DEV__"      : false,
-    "__TEST__"     : false,
-    "__PROD__"     : false,
-    "__COVERAGE__" : false
+    "window": false
   },
   "rules": {
-    "key-spacing"          : 0,
-    "jsx-quotes"           : [2, "prefer-single"],
-    "max-len"              : [2, 120, 2],
-    "object-curly-spacing" : [2, "always"]
+    "valid-jsdoc": ["warn", {
+      "requireReturn": false
+    }],
+
+    "import/no-unresolved": [
+      "error", {
+        "ignore": [
+          "nav",
+          "raven"
+        ]
+      }
+    ],
+
+    "padded-blocks": [
+      "off"
+    ],
+    "new-cap": [
+      "error", {
+        "capIsNewExceptions": [
+          "Map"
+        ]
+      }
+    ],
+    "no-unused-vars": [
+      "warn"
+    ],
+    "no-use-before-define": [
+      "error",
+      "nofunc"
+    ],
+    "quotes": [
+      "warn",
+      "backtick"
+    ],
+    "no-unreachable": [
+      "warn"
+    ],
+    "no-spaced-func": [
+      "warn"
+    ],
+    "prefer-const": [
+      "warn"
+    ],
+    "require-jsdoc": [
+      "off"
+    ],
+    "piggyback/no-restricted-global-extend": [
+      "error",
+      "window",
+      "global"
+    ],
+    "banhammer/no-restricted-functions": [
+      "error",
+      "window.getSelection"
+    ],
+    "no-empty": [
+      "warn"
+    ],
+    "object-curly-spacing": [
+      "warn"
+    ],
+    "eol-last": [
+      "warn"
+    ],
+    "comma-dangle": [
+      "warn"
+    ],
+    "space-infix-ops": [
+      "warn"
+    ]
   }
 }
